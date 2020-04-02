@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    {% include '_pagehead.html' %}
+
+  </head>
+
+  <body>
+
+    {% include '_navbar.html' %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='dashboard-demo.jpg') }}')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Welcome {{session.name}}</h1>
+              <span class="subheading">Every patient in the system are mentioned below ordered by next appointment</span>
+              <span class="subheading">Click on the patient to view details.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        {% include '_messages.html' %}
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Last Treated</th>
+                <th scope="col">Treatment</th>
+              </tr>
+            </thead>
+            {% for patient in patients %}
+              <div class="post-preview">
+                  <tbody>
+                    <tr>
+                        <td class="post-title"><a href="{{ url_for('patient', patient_id=patient.id) }}">{{ patient.name}}</a></td>
+                        <td class="post-subtitle"><a href="{{ url_for('patient', patient_id=patient.id) }}">{{ patient.email}}</a></td>
+                        <td class="post-meta"><a href="{{ url_for('patient', patient_id=patient.id) }}">{{ patient.date_treated.strftime('%B %d, %Y') }}</a></td>
+                        <td class="post-meta"><a href="{{ url_for('patient', patient_id=patient.id) }}">{{ patient.treatment }}</a></td>
+                        <td>
+                          <form action="{{url_for('delete_patient', patient_id=patient.id)}}" method="post">
+                            <input type="submit" value="Remove" class="btn btn-danger">
+                          </form>
+                        </td>
+                    </tr>
+                  </tbody>
+              </div>  
+            {% endfor %}
+          </table>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+  </body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    {% include '_pagehead.html' %}
+
+  </head>
+
+  <body>
+
+    {% include '_navbar.html' %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='blog-demo.jpg') }}')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ post.title }}</h1>
+              <h2 class="subheading">{{ post.subtitle }}</h2>
+              <span class="meta">Posted by
+                {{post.author}}
+                on {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Author of this Article:  {{ post.author }}</p>
+            <p>{{ post.content|safe }}</p>
+            <p>
+              <form action="{{url_for('delete_post', post_id=post.id)}}" method="post">
+                <input type="submit" value="Remove Post" class="btn btn-danger btn-lg">
+              </form>
+            </p>  
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{ url_for('static', filename='clean-blog.min.js') }}"></script>
+
+  </body>
+
+</html>

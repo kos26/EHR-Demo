@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    {% include '_pagehead.html' %}
+
+  </head>
+
+  <body>
+
+    {% include '_navbar.html' %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='addpatient-demo.jpg') }}')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Add New Patient</h1>
+              <span class="subheading">You can add a new patient here and view it on your dashboard.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        {% include '_messages.html' %}
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <form name="addForm" id="addForm" method="POST" action="{{ url_for('addpatient') }}" novalidate>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" name="name" id="name" required data-validation-required-message="Please enter a title.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group col-xs-12 floating-label-form-group controls">
+                  <label>Phone</label>
+                  <input type="phone
+                  " class="form-control" placeholder="Phone" name="phone" id="phone" required data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Email" name="email" id="email" required data-validation-required-message="Please enter your email address.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Age</label>
+                <input type="text" class="form-control" placeholder="Age" name="age" id="age" required data-validation-required-message="Please enter age.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Treatment</label>
+                  <textarea rows="5" class="form-control" placeholder="Treatment" name="treatment" id="treatment" required data-validation-required-message="Please enter problems diagnosed and treatment."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Infection</label>
+                  <textarea rows="5" class="form-control" placeholder="Infection" name="infection" id="infection" required data-validation-required-message="Please enter this feild."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Allergy</label>
+                <textarea rows="5" class="form-control" placeholder="Allergy" name="allergy" id="allergy" required data-validation-required-message="Please enter this feild."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Medication</label>
+                  <textarea rows="5" class="form-control" placeholder="Medication" name="medication" id="medication" required data-validation-required-message="Please enter this feild."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Prescription</label>
+                  <textarea rows="5" class="form-control" placeholder="Prescription" name="prescription" id="prescription" required data-validation-required-message="Please enter this feild."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group col-xs-12 floating-label-form-group controls">
+                  <label>Next_Appointment</label>
+                  <input type="text" class="form-control" placeholder="Next_Appointment" name="next_appointment" id="next_appointment" required data-validation-required-message="Please enter this feild.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-info btn-lg" id="sendMessageButton">Add Patient</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+  </body>
+
+</html>

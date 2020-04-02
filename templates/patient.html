@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    {% include '_pagehead.html' %}
+
+  </head>
+
+  <body>
+
+    {% include '_navbar.html' %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='patient-demo.jpg') }}')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>Name: {{ patient.name }}</h1>
+              <h3 class="subheading">Age: {{ patient.age }}</h3>
+              <h3 class="subheading">Last Treated: {{ patient.date_treated.strftime('%B %d, %Y') }} at {{ patient.date_treated.strftime('%I:%M %p') }}</h3>
+              <span class="meta">Treatment: 
+                {{ patient.treatment }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+              <p>Upcoming Appointment: {{ patient.next_appointment|safe }}</p>
+              <p>Phone Number: {{ patient.phone|safe }}</p>
+              <p>Email address: {{ patient.email|safe }}</p>
+              <p>Any Infection: {{ patient.infection|safe }}</p>
+              <p>Allergy: {{ patient.allergy|safe }}</p>
+              <p>Past Medication: {{ patient.medication|safe }}</p>
+              <p>Current Prescription: {{ patient.prescription|safe }}</p>
+              <p>
+                <form action="{{url_for('delete_patient', patient_id=patient.id)}}" method="post">
+                  <input type="submit" value="Remove Patient" class="btn btn-danger btn-lg btn-block">
+                </form>
+              </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{ url_for('static', filename='clean-blog.min.js') }}"></script>
+
+  </body>
+
+</html>
